@@ -17,6 +17,7 @@ public class Register extends AppCompatActivity {
     TextView alreadyLogin;
     FirebaseAuth fireBaseAuth;
     ProgressBar progressBar;
+    //ssssss
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
