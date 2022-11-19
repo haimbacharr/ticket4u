@@ -9,7 +9,7 @@
     tools:context=".Register">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/Ticket_4u_app"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ticket 4 U App"
@@ -23,14 +23,14 @@
         app:layout_constraintVertical_bias="0.166" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/create_new_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create New Account"
         android:textColor="#FBFBFB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/Ticket_4u_app" />
 
     <EditText
         android:id="@+id/fullName"
@@ -49,8 +49,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.17000002" />
+        app:layout_constraintTop_toBottomOf="@+id/create_new_account"
+        app:layout_constraintVertical_bias="0.060000002" />
 
     <EditText
         android:id="@+id/email"
@@ -66,10 +66,9 @@
         android:padding="10dp"
         android:text="Email"
         android:textColor="#F8F6F6"
-        android:textColorHint="#FDFDFD"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fullName"
         app:layout_constraintVertical_bias="0.033" />
@@ -123,15 +122,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="155dp"
+        android:layout_marginBottom="172dp"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone" />
+        app:layout_constraintTop_toBottomOf="@+id/phone"
+        app:layout_constraintVertical_bias="0.32999998" />
 
     <TextView
         android:id="@+id/alreadyLogin"
