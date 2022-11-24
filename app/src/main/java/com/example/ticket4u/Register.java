@@ -30,8 +30,8 @@ public class Register extends AppCompatActivity {
     Button mRegisterButton;
     TextView alreadyLogin;
     FirebaseAuth fireBaseAuth;
+    ProgressBar progressBar;
     ProgressBar progressBarRegister;
-
     ERegister validateRegisterStatus;
 
     @Override

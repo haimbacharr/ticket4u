@@ -8,29 +8,26 @@
     android:background="@drawable/app_background"
     tools:context=".Register">
 
-    <TextView
-        android:id="@+id/Ticket_4u_app"
-        android:layout_width="wrap_content"
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="247dp"
         android:layout_height="wrap_content"
-        android:text="Ticket 4 U App"
-        android:textColor="#FFEB3B"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        android:layout_marginStart="80dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:srcCompat="@drawable/app_logo" />
 
     <TextView
         android:id="@+id/create_new_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="8dp"
         android:text="Create New Account"
         android:textColor="#FBFBFB"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Ticket_4u_app" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/fullName"
