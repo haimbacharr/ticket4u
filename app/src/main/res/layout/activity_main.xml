@@ -4,8 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:background="@drawable/app_background"
     tools:context=".MainActivity">
+=======
+    tools:context=".MainActivity"
+    android:background="@drawable/app_background">
+>>>>>>> origin/main
 
     <ImageView
         android:id="@+id/imageView"
@@ -22,6 +27,7 @@
         app:srcCompat="@drawable/app_logo" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,7 +87,26 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="20dp"
         android:text="LOG OUT"
+=======
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:textColor="@color/white"
+>>>>>>> origin/main
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/logOutbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.17000002"
+        android:onClick="logout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
