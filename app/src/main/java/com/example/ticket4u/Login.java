@@ -1,8 +1,10 @@
 package com.example.ticket4u;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +34,7 @@ public class Login extends AppCompatActivity {
 
     EditText mEmail, mPassword;
     Button mLoginButton;
-    TextView textIsNew;
+    TextView textIsNew, forgotTextLink;
     FirebaseAuth fireBaseAuth;
     ProgressBar progressBarLogin;
 
@@ -47,6 +51,7 @@ public class Login extends AppCompatActivity {
         textIsNew = findViewById(R.id.textIsNewHere);
         fireBaseAuth = FirebaseAuth.getInstance();
         progressBarLogin = findViewById(R.id.progressBarLogin);
+        forgotTextLink = findViewById(R.id.forgotPassword);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +89,19 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
+        /* Forgot password method */
+        forgotTextLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SendRequestToResetEmailPassword(view);
+            }
+        });
+
     }
 
+
+    /* Validate password and email */
     private ELogin validatePasswordAndEmail(String email, String password) {
         if(TextUtils.isEmpty(email)){
             mEmail.setError("Email is required.");
@@ -101,10 +117,43 @@ public class Login extends AppCompatActivity {
             return ELogin.VALIDATE_PASSWORD_SHORT;
         }
 
-
-
         return ELogin.VALIDATE_SUCCESS; // validate complete successfully
     }
 
+    private void SendRequestToResetEmailPassword(View view) {
+        EditText resetEmail = new EditText(view.getContext());
+        AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(view.getContext());
+        passwordResetDialog.setTitle("Reset password?");
+        passwordResetDialog.setMessage("Enter Your Email To Received Reset Link.");
+        passwordResetDialog.setView(resetEmail);
+
+        passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                String mail = resetEmail.getText().toString();
+                fireBaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(Login.this, "Reset Link Sent To Your Email.", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Login.this, "Error! Reset Link is Not Sent" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //close the dialog window
+            }
+        });
+
+        passwordResetDialog.create().show(); // open the dialog which describe before.
+    }
 
 }

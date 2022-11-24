@@ -10,7 +10,6 @@ public class Sell extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firest
         setContentView(R.layout.activity_sell);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();

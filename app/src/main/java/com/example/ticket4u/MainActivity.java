@@ -31,12 +31,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mButton_sell = findViewById((R.id.button_sell));
 
+        /************** start Eliran ***************/
         mButton_sell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),Sell.class));
             }
         });
+        /************** end Eliran ***************/
     }
 
     public void logout(View view){
