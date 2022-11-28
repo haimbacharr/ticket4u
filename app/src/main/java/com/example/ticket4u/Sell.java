@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -24,9 +25,10 @@ public class Sell extends AppCompatActivity {
     private static final String TAG = "Sell";
     Button mButton_back,mButton_sell,mButton_Load;
     EditText mItemName,mItemPrice,mItemSold;
+    TextView mtextViewLoadData;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference itemRef  = db.collection("items").document();
+    DocumentReference itemRef  = db.collection("items").document("Eliran");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class Sell extends AppCompatActivity {
         mItemName = findViewById((R.id.editTextItemName));
         mItemPrice = findViewById((R.id.editTextItemPrice));
         mItemSold = findViewById((R.id.editTextItemSold));
+        mtextViewLoadData = findViewById(R.id.textViewLoadData);
 
         mButton_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,25 +99,17 @@ public class Sell extends AppCompatActivity {
                 });
     }
 
-    //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 //example for get value from collection
 //////////////////////////////////////////////////////////////////////////
     public void getItem(View v) {
-        Boolean boolitemsold = Boolean.FALSE;
-        String itemName = mItemName.getText().toString();
-        String itemPrice = mItemPrice.getText().toString();
-        String itemSold = mItemSold.getText().toString();
-        if(itemSold =="Yes") boolitemsold = Boolean.TRUE;
-
-        Map<String,Object> note = new HashMap<>();
-        note.put("name",itemName);
-        note.put("price",itemPrice);
-        note.put("sold",itemSold);
         itemRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
+                    String title = documentSnapshot.getString("name");
 
+                    mtextViewLoadData.setText("Title:" + title);
                 }else{
                     Toast.makeText(Sell.this, "Doc does not exist", Toast.LENGTH_SHORT).show();
                 }
@@ -123,28 +118,14 @@ public class Sell extends AppCompatActivity {
         .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Toast.makeText(Sell.this, "Error!", Toast.LENGTH_SHORT).show();
+                Log.d(TAG,e.toString());
             }
         });
-        // db.document("Notebook/my first note");
-       /* db.collection("items").document().set(note)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(Sell.this, "item saved, document ID: "+docID, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Sell.this, "Error to saved item", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG,e.toString());
-                    }
-                });*/
     }
 
-
     //TODO: move to general class\library, because we use it in more classes.
+    //getID, get collection name and generate and return ID to this collection
     public String getID(String collectionName){
         return db.collection(collectionName).document().getId();
     }
